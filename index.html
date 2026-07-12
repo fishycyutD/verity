@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verity</title>
+</head>
+<body>
+    <img src="verity.jpg" id="verity">
+    <button id="response" style="display: none;">Hello!</button>
+    <h1 id="line"></h1>
+    <script>
+        let verity = document.getElementById("verity");
+        let hello = new Audio("verityHello.mp3");
+        let threeDays = new Audio("threeDays.mp3");
+        let something = new Audio("jusatti890-scream-horror-sfx-490916.mp3");
+        let subtitles = document.getElementById("line");
+        let response = document.getElementById("response");
+
+        let userLines = [
+            "Hello!",
+            "Sure!",
+            "What's coming?",
+            "No you're not.",
+            "???",
+            "SIHZDKFOGBSAHKLHFGBAL",
+            "just believe in him.",
+            "just believe in him.",
+        ];
+        let verityLines = [
+            "Hello! I'm Verity, your personal helper friend. Ask me anything, I know everything.",
+            "I'm sure you already know me. Wanna know a fun fact?",
+            "Something is coming in 3 days.",
+            "I'm coming to your house."
+        ];
+        let lineNumber = 0;
+        function play(file) {
+            file.currentTime = 0;
+            file.play();
+        }
+        function proceed() {
+            subtitles.textContent = verityLines[lineNumber];
+            response.textContent = userLines[lineNumber];
+            switch (lineNumber) {
+                case 0:
+                    play(hello);
+                    break;
+                case 2:
+                    threeDays.currentTime = 1;
+                    threeDays.play();
+                    break;
+                case 5:
+                    play(something);
+                    document.body.style.backgroundColor = "black";
+                    verity.src = "https://i.pinimg.com/736x/79/28/99/7928998dbd3e738de95f8e5bf2a279a6.jpg";
+                    break;
+            }
+        }
+        verity.addEventListener("click", () => {
+            if(!lineNumber) {
+                response.style.display = "block";
+            }
+            proceed();
+        });
+        response.addEventListener("click", () => {
+            lineNumber++;
+            proceed();
+        });
+    </script>
+</body>
+</html>
