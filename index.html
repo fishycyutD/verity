@@ -43,7 +43,8 @@
             response.textContent = userLines[lineNumber];
             switch (lineNumber) {
                 case 0:
-                    play(hello);
+                    hello.currentTime = 0.75;
+                    hello.play();
                     break;
                 case 2:
                     threeDays.currentTime = 1;
